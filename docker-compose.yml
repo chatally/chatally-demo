@@ -1,11 +1,29 @@
 version: "3.9"
 services:
   app:
-    build: .
+    image: chatally/demo-app
+    networks:
+      - traefik_net
+      - bridge
     ports:
       - "3000:3000"
-    environment:
-      - WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID}
-      - WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=${WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN}
-      - WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=${WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN}
-      - WHATSAPP_CLOUD_WEBHOOKS_SECRET=${WHATSAPP_CLOUD_WEBHOOKS_SECRET}
+    volumes:
+      # Time sync with host
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    env_file:
+      - ./.env
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.${STACK}_WHATSAPP.middlewares=sec-headers@file
+        - traefik.http.routers.${STACK}_WHATSAPP.rule=Host(`${SITE}`)
+        - traefik.http.routers.${STACK}_WHATSAPP.tls.certresolver=letsencrypt
+        - traefik.http.routers.${STACK}_WHATSAPP.tls=true
+        - traefik.http.services.${STACK}_WHATSAPP.loadbalancer.server.port=${WA_PORT:-3000}
+        # For services on other ports, add another router and respective service
+        # - traefik.http.routers.${STACK}_SIGNAL.middlewares=sec-headers@file
+        # - traefik.http.routers.${STACK}_SIGNAL.rule=Host(`${SITE}`)
+        # - traefik.http.routers.${STACK}_SIGNAL.tls.certresolver=letsencrypt
+        # - traefik.http.routers.${STACK}_SIGNAL.tls=true
+        # - traefik.http.services.${STACK}_SIGNAL.loadbalancer.server.port=${SIGNAL_PORT:-3001}

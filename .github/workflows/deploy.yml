@@ -33,17 +33,16 @@ jobs:
 
       - name: Copy sources
         run: |
-          scp -r Dockerfile docker-compose.yml app REMOTE_SERVER:${{ secrets.REMOTE_DIR }}
+          scp -r Dockerfile docker-compose.yml restart-server.sh app REMOTE_SERVER:~
 
-      - name: Stop, rebuild and restart server (remotely)
+      - name: Copy environment variables
         run: |
-          cat >>ssh REMOTE_SERVER 'bash -' <<END
-          cd ${{ secrets.REMOTE_DIR }};
-          export WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }};
-          export WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=${{ secrets.WA_ACCESS_TOKEN }};
-          export WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=${{ secrets.WA_VERIFY_TOKEN }};
-          export WHATSAPP_CLOUD_WEBHOOKS_SECRET=${{ secrets.WA_SECRET }};
-          docker-compose down;
-          docker-compose build;
-          docker-compose up -d;
+          cat >>ssh REMOTE_SERVER 'cat > .env' <<END
+          WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }}
+          WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=${{ secrets.WA_ACCESS_TOKEN }}
+          WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=${{ secrets.WA_VERIFY_TOKEN }}
+          WHATSAPP_CLOUD_WEBHOOKS_SECRET=${{ secrets.WA_SECRET }}
           END
+      - name: Restart server (remotely)
+        run: |
+          ssh REMOTE_SERVER './restart-server.sh'
