@@ -11,8 +11,6 @@ services:
     networks:
       - traefik_net
       - bridge
-    ports:
-      - 3300:3300
     volumes:
       # Time sync with host
       - /etc/localtime:/etc/localtime:ro
@@ -22,14 +20,8 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.${STACK}_WHATSAPP.middlewares=sec-headers@file
-        - traefik.http.routers.${STACK}_WHATSAPP.rule=Host(`${SITE}`)
-        - traefik.http.routers.${STACK}_WHATSAPP.tls.certresolver=letsencrypt
-        - traefik.http.routers.${STACK}_WHATSAPP.tls=true
-        - traefik.http.services.${STACK}_WHATSAPP.loadbalancer.server.port=3300
-        # For services on other ports, add another router and respective service
-        # - traefik.http.routers.${STACK}_SIGNAL.middlewares=sec-headers@file
-        # - traefik.http.routers.${STACK}_SIGNAL.rule=Host(`${SITE}`)
-        # - traefik.http.routers.${STACK}_SIGNAL.tls.certresolver=letsencrypt
-        # - traefik.http.routers.${STACK}_SIGNAL.tls=true
-        # - traefik.http.services.${STACK}_SIGNAL.loadbalancer.server.port=${SIGNAL_PORT:-3301}
+        - traefik.http.routers.${STACK}.middlewares=sec-headers@file
+        - traefik.http.routers.${STACK}.rule=Host(`${SITE}`)
+        - traefik.http.routers.${STACK}.tls.certresolver=letsencrypt
+        - traefik.http.routers.${STACK}.tls=true
+        - traefik.http.services.${STACK}.loadbalancer.server.port=80
