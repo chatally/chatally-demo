@@ -1,0 +1,49 @@
+name: Deploy to remote server via scp/ssh
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to remote
+    runs-on: ubuntu-latest
+    # needs: tests // we might want to run some tests before deploying?
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/remote.key
+          chmod 600 ~/.ssh/remote.key
+          cat >>~/.ssh/config <<END
+          Host REMOTE_SERVER
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/remote.key
+            StrictHostKeyChecking no
+          END
+
+      - name: Copy sources
+        run: |
+          scp -r Dockerfile docker-compose.yml app REMOTE_SERVER:${{ secrets.REMOTE_DIR }}
+
+      - name: Stop, rebuild and restart server (remotely)
+        run: |
+          cat >>ssh REMOTE_SERVER 'bash -' <<END
+          cd ${{ secrets.REMOTE_DIR }};
+          export WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }};
+          export WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=${{ secrets.WA_ACCESS_TOKEN }};
+          export WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=${{ secrets.WA_VERIFY_TOKEN }};
+          export WHATSAPP_CLOUD_WEBHOOKS_SECRET=${{ secrets.WA_SECRET }};
+          docker-compose down;
+          docker-compose build;
+          docker-compose up -d;
+          END

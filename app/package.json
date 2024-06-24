@@ -1,0 +1,13 @@
+{
+  "name": "chatally-demo",
+  "type": "module",
+  "module": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@chatally/core": "^0.0.8",
+    "@chatally/whatsapp-cloud": "^0.0.3"
+  }
+}

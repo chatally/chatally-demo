@@ -1,0 +1,37 @@
+{
+  "name": "node.js",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "NPM_PACKAGES": "nodemon"
+    }
+  },
+  "runArgs": ["--network=host"],
+  "mounts": [
+    "source=${localEnv:HOME}/.bashrc,target=/home/node/.bashrc,type=bind,consistency=cached"
+  ],
+  "containerEnv": {
+    "LAUNCH_EDITOR": "code"
+  },
+
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Add the IDs of extensions you want installed
+      "extensions": [
+        "brunnerh.insert-unicode",
+        "davidanson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "gruntfuggly.todo-tree",
+        "jock.svg",
+        "unifiedjs.vscode-mdx",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
+  },
+
+  "remoteUser": "node"
+}
