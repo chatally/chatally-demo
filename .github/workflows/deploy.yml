@@ -31,7 +31,7 @@ jobs:
             StrictHostKeyChecking no
           END
 
-      - name: Copy environment variables to .env.app
+      - name: Copy environment variables to ~/.env.app
         run: |
           cat >>~/.env.app <<END
           WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }}
@@ -42,7 +42,7 @@ jobs:
 
       - name: Copy sources
         run: |
-          scp -r Dockerfile docker-compose.yml restart-server.sh .env.app app REMOTE_SERVER:~
+          scp -r Dockerfile docker-compose.yml restart-server.sh ~/.env.app app REMOTE_SERVER:~
 
       - name: Restart server (remotely)
         run: |
