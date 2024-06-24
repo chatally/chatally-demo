@@ -17,7 +17,12 @@ import { WhatsAppCloud } from "@chatally/whatsapp-cloud";
  * available URL (potentially including a port number, in case you are running
  * multiple ChatAlly servers on the same URL).
  */
-const whatsapp = new WhatsAppCloud();
+const whatsapp = new WhatsAppCloud({
+  webhooks: {
+    // same as in docker-compose.yml used for WHATSAPP service
+    port: 3300,
+  },
+});
 
 new Application() //
   .use(whatsapp)
