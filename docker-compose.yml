@@ -1,4 +1,10 @@
 version: "3.9"
+networks:
+  bridge:
+    external: true
+  traefik_net:
+    external: true
+
 services:
   app:
     image: chatally/demo-app
