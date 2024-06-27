@@ -20,13 +20,6 @@ if [[ -n $(docker stack ps "${stack}" 2>/dev/null) ]]; then
   echo -e "\b\b ✔️"
 fi
 
-# Setup environment variables from dotenv file
-echo -n "Setting up environment variables..."
-set -o allexport
-[[ -r "./.env" ]] && source ./.env
-set +o allexport
-echo -e "\b\b ✔️"
-
 echo "Building required docker image..."
 docker build --tag "chatally/demo-app" .
 echo -e "\b\b ✔️"

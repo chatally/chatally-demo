@@ -1,2 +1,5 @@
-node_modules/
 @TODOS.md
+app/.env
+app/generate-tokens.js
+media.db*
+node_modules/

@@ -15,8 +15,6 @@ services:
       # Time sync with host
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-    env_file:
-      - ./.env.app
     deploy:
       labels:
         - traefik.enable=true
@@ -24,4 +22,4 @@ services:
         - traefik.http.routers.${STACK}.rule=Host(`${SITE}`)
         - traefik.http.routers.${STACK}.tls.certresolver=letsencrypt
         - traefik.http.routers.${STACK}.tls=true
-        - traefik.http.services.${STACK}.loadbalancer.server.port=80
+        - traefik.http.services.${STACK}.loadbalancer.server.port=3000

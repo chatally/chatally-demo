@@ -1,8 +1,10 @@
 import { Application } from "@chatally/core";
 import { WhatsAppCloud } from "@chatally/whatsapp-cloud";
+import "dotenv/config";
 
 /**
- * This will read the following variables from the environment
+ * WhatsApp Cloud Server, where all configuration is read from environment
+ * variables:
  *
  * - WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID
  * - WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN
@@ -11,14 +13,15 @@ import { WhatsAppCloud } from "@chatally/whatsapp-cloud";
  *
  * You have to set them up in your WhatsApp Cloud application dashboard.
  * The following page in "Meta for Developers" explains how to do that:
- * https://developers.facebook.com/docs/graph-api/webhooks/getting-started#configure-webhooks-product
- * You do not have to implement the endpoint, that is what the ChatAlly
- * WhatsApp Cloud server does for you. Just deploy it to some publicly
- * available URL (potentially including a port number, in case you are running
- * multiple ChatAlly servers on the same URL).
+ * https://developers.facebook.com/docs/graph-api/webhooks/getting-started#configure-webhooks-product.
+ *
+ * You do not have to implement the endpoint, that is what ChatAlly's WhatsApp
+ * Cloud Server does for you. Just deploy it to some publicly available URL
+ * (potentially including a port number, in case you are running multiple
+ * ChatAlly servers on the same URL).
  */
 const whatsapp = new WhatsAppCloud({
-  webhooks: { port: 80 },
+  webhooks: { path: "/whatsappcloud" }
 });
 
 new Application() //
