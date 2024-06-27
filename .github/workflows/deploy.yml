@@ -21,12 +21,12 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/remote.key
+          echo "${{ secrets.SSH_USER }}" > ~/.ssh/remote.key
           chmod 600 ~/.ssh/remote.key
           cat >>~/.ssh/config <<END
           Host REMOTE_SERVER
-            HostName $SSH_HOST
-            User $SSH_USER
+            HostName ${{ secrets.SSH_HOST }}
+            User ${{ secrets.SSH_USER }}
             IdentityFile ~/.ssh/remote.key
             StrictHostKeyChecking no
           END
