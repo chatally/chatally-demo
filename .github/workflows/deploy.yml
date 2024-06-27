@@ -21,9 +21,9 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
           mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_USER }}" > ~/.ssh/remote.key
+          printf "%s" "${{ secrets.SSH_USER }}" > ~/.ssh/remote.key
           chmod 600 ~/.ssh/remote.key
-          cat >>~/.ssh/config <<END
+          cat >~/.ssh/config <<END
           Host REMOTE_SERVER
             HostName ${{ secrets.SSH_HOST }}
             User ${{ secrets.SSH_USER }}
@@ -33,7 +33,7 @@ jobs:
 
       - name: Copy environment variables to ~/app/.env
         run: |
-          cat >>app/.env <<END
+          cat >app/.env <<END
           WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }}
           WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=${{ secrets.WA_ACCESS_TOKEN }}
           WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=${{ secrets.WA_VERIFY_TOKEN }}
