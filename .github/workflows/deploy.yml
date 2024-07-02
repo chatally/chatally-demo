@@ -18,7 +18,9 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           chmod 700 ~/.ssh
-          printf "%s" "${{ secrets.SSH_KEY }}" > ~/.ssh/remote.key
+          cat >~/.ssh/remote.key <<END
+          ${{ secrets.SSH_KEY }}
+          END
           chmod 600 ~/.ssh/remote.key
           cat >~/.ssh/config <<END
           Host REMOTE_SERVER
