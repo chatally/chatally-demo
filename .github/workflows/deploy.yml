@@ -18,15 +18,14 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           chmod 700 ~/.ssh
-          cat >~/.ssh/remote.key <<END
-          ${{ secrets.SSH_KEY }}
-          END
-          chmod 600 ~/.ssh/remote.key
+          cat >~/.ssh/chatally_id_rsa <<END
+          ${{ secrets.SSH_KEY }}END
+          chmod 600 ~/.ssh/chatally_id_rsa
           cat >~/.ssh/config <<END
           Host REMOTE_SERVER
             HostName ${{ secrets.SSH_HOST }}
             User ${{ secrets.SSH_USER }}
-            IdentityFile ~/.ssh/remote.key
+            IdentityFile ~/.ssh/chatally_id_rsa
             StrictHostKeyChecking no
           END
 
