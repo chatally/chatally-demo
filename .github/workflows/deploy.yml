@@ -15,33 +15,40 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configure SSH in runner
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh/
-          chmod 700 ~/.ssh
-          cat >~/.ssh/chatally_id_rsa <<END
-          ${{ secrets.SSH_KEY }}END
+          echo "$SSH_KEY" > ~/.ssh/chatally_id_rsa
           chmod 600 ~/.ssh/chatally_id_rsa
           cat >~/.ssh/config <<END
-          Host REMOTE_SERVER
-            HostName ${{ secrets.SSH_HOST }}
-            User ${{ secrets.SSH_USER }}
+          Host REMOTEHOST
+            HostName $SSH_HOST
+            User $SSH_USER
             IdentityFile ~/.ssh/chatally_id_rsa
             StrictHostKeyChecking no
           END
 
       - name: Write variables to env file
+        env:
+          WA_PHONE_NUMBER_ID: ${{ secrets.WA_PHONE_NUMBER_ID }}
+          WA_ACCESS_TOKEN: ${{ secrets.WA_ACCESS_TOKEN }}
+          WA_VERIFY_TOKEN: ${{ secrets.WA_VERIFY_TOKEN }}
+          WA_SECRET: ${{ secrets.WA_SECRET }}
         run: |
           cat >app/.env <<END
-          WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }}
-          WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=${{ secrets.WA_ACCESS_TOKEN }}
-          WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=${{ secrets.WA_VERIFY_TOKEN }}
-          WHATSAPP_CLOUD_WEBHOOKS_SECRET=${{ secrets.WA_SECRET }}
+          WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=$WA_PHONE_NUMBER_ID
+          WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN=$WA_ACCESS_TOKEN
+          WHATSAPP_CLOUD_WEBHOOKS_VERIFY_TOKEN=$WA_VERIFY_TOKEN
+          WHATSAPP_CLOUD_WEBHOOKS_SECRET=$WA_SECRET
           END
 
       - name: Copy sources
         run: |
-          scp -i ~/.ssh/chatally_id_rsa -r docker-compose.yml Dockerfile restart-server.sh app ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/src
+          scp -r docker-compose.yml Dockerfile restart-server.sh app REMOTEHOST:~/src
 
       - name: Restart server (remotely)
         run: |
-          ssh -i ~/.ssh/chatally_id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '~/src/restart-server.sh'
+          ssh REMOTEHOST '~/src/restart-server.sh'
