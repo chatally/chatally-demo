@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Configure SSH
+      - name: Configure SSH in runner
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_USER: ${{ secrets.SSH_USER }}
@@ -31,7 +31,7 @@ jobs:
             StrictHostKeyChecking no
           END
 
-      - name: Copy environment variables to ~/app/.env
+      - name: Write variables to env file
         run: |
           cat >app/.env <<END
           WHATSAPP_CLOUD_GRAPHAPI_PHONE_NUMBER_ID=${{ secrets.WA_PHONE_NUMBER_ID }}
@@ -42,8 +42,8 @@ jobs:
 
       - name: Copy sources
         run: |
-          scp -r Dockerfile docker-compose.yml restart-server.sh app REMOTE_SERVER:~
+          scp -r docker-compose.yml Dockerfile restart-server.sh app REMOTE_SERVER:~/src
 
       - name: Restart server (remotely)
         run: |
-          ssh REMOTE_SERVER './restart-server.sh'
+          ssh REMOTE_SERVER '~/src/restart-server.sh'
