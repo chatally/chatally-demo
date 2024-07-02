@@ -40,8 +40,8 @@ jobs:
 
       - name: Copy sources
         run: |
-          scp -r docker-compose.yml Dockerfile restart-server.sh app REMOTE_SERVER:~/src
+          scp -i ~/.ssh/chatally_id_rsa -r docker-compose.yml Dockerfile restart-server.sh app ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/src
 
       - name: Restart server (remotely)
         run: |
-          ssh REMOTE_SERVER '~/src/restart-server.sh'
+          ssh -i ~/.ssh/chatally_id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '~/src/restart-server.sh'
