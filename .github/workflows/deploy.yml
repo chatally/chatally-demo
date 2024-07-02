@@ -21,13 +21,13 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/chatally_id_rsa
-          chmod 600 ~/.ssh/chatally_id_rsa
+          echo "$SSH_KEY" > ~/.ssh/chatally_id
+          chmod 600 ~/.ssh/chatally_id
           cat >~/.ssh/config <<END
           Host REMOTEHOST
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/chatally_id_rsa
+            IdentityFile ~/.ssh/chatally_id
             StrictHostKeyChecking no
           END
 

@@ -4,10 +4,10 @@ set -euo pipefail
 IFS=$'\t\n'
 
 # Derive the site from the directory name, e.g. preview.dooiy.org
-caller_dir=${PWD}
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 site=${PWD##*/}
 stack="${site//./_}"
+cd "$(dirname "$0")"
 
 echo "(Re-)starting stack ${stack} from ${PWD}..."
 
