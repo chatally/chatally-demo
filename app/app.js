@@ -1,4 +1,5 @@
 import { Application } from "@chatally/core";
+import { BaseLogger } from "@chatally/logger";
 import { WhatsAppCloud } from "@chatally/whatsapp-cloud";
 import "dotenv/config";
 
@@ -24,7 +25,9 @@ const whatsapp = new WhatsAppCloud({
   webhooks: { path: "/whatsappcloud" }
 });
 
-new Application() //
+const log = new BaseLogger({ name: "Demo", level: "debug" });
+
+new Application({ log }) //
   .use(whatsapp)
   .use(function echo({ req, res }) {
     if (res.isWritable) {
