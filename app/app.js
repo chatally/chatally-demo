@@ -25,7 +25,7 @@ const whatsapp = new WhatsAppCloud({
   webhooks: { path: "/whatsappcloud" }
 });
 
-const log = new BaseLogger({ name: "Demo", level: "debug" });
+const log = new BaseLogger({ name: "Demo", level: "trace" });
 
 new Application({ log }) //
   .use(whatsapp)
