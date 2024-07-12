@@ -7,9 +7,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@chatally/core": "^0.0.9",
-    "@chatally/whatsapp-cloud": "^0.0.8",
+    "@chatally/core": "^0.0.10",
+    "@chatally/utils": "^0.0.0",
+    "@chatally/whatsapp-cloud": "^0.0.9",
     "dotenv": "^16.4.5",
     "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10"
   }
 }
