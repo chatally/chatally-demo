@@ -5,7 +5,7 @@ import { scrapeWebsite } from './utils/scrapeWebsite.js'
 
 const DAY = 24 * 60 * 60 * 1000
 
-const websiteCorpus = './nlpjs/website-corpus.json'
+const websiteCorpus = './nlpjs/website.json'
 const stat = await fs.stat(websiteCorpus)
 if (!stat || stat.mtime.getTime() + 1 * DAY < Date.now()) {
   const corpus = await scrapeWebsite('https://chatally.org')
@@ -18,7 +18,7 @@ const nlp = await trainNlp(noLogger, {
       corpora: [
         './nlpjs/general-questions.json',
         websiteCorpus,
-        './nlpjs/chitchat-corpus.json',
+        './nlpjs/chitchat.json',
       ],
     },
   },

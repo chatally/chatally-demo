@@ -55,9 +55,9 @@ https://chatally.org`,
 /** @type {import('@chatally/core').ChatMessage} */
 const gettingStarted = {
   type: 'text',
-  content: `Getting started is really easy. If you are a web developer, I assume you have node.js and npm installed, then just do
+  content: `Getting started is really easy. If you are a web developer, I assume you have \`node.js\` and \`npm\` installed, then just do
 
-__npm install @chatally/core @chatally/console__
+\`npm install @chatally/core @chatally/console\`
 
 and start creating your application. To continue, have a look at
 

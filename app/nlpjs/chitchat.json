@@ -17,9 +17,9 @@
         "talk about yourself"
       ],
       "answers": [
-        "I'm a chatbot.\n\n__built with ChatAlly | https://chatally.org__",
-        "Well, I'm not a person, I'm a virtual agent.\n\n__built with ChatAlly | https://chatally.org__",
-        "I am a chat application.\n\n__built with ChatAlly | https://chatally.org__"
+        "I'm a chatbot.\n\n__built with ChatAlly__\nhttps://chatally.org__",
+        "Well, I'm not a person, I'm a virtual agent.\n\n__built with ChatAlly__\nhttps://chatally.org",
+        "I am a chat application.\n\n__built with ChatAlly__\nhttps://chatally.org"
       ]
     },
     {

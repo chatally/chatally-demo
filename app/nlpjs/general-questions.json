@@ -3,14 +3,36 @@
   "locale": "en-US",
   "data": [
     {
-      "intent": "gq.common",
+      "intent": "gq.repository",
       "utterances": [
-        "whom can i ask stuff",
         "where do i find the code",
-        "how are you earning money"
+        "do you have a github repository"
       ],
       "answers": [
-        "Ooops"
+        "We publish all our code on Github. Have a look at\nhttps://github.com/chatally/chatally"
+      ]
+    },
+    {
+      "intent": "gq.forum",
+      "utterances": [
+        "whom can i ask stuff",
+        "is there a user forum",
+        "do you have a discord server",
+        "is there a slack channel"
+      ],
+      "answers": [
+        "We do have a Discord server, where you can chat with the maintainers and ask support questions.\n\nhttps://discord.gg/Sb8ECsQCgr"
+      ]
+    },
+    {
+      "intent": "gq.funding",
+      "utterances": [
+        "how do you earn money",
+        "where do you get funding from",
+        "are you open for donations"
+      ],
+      "answers": [
+        "ChatAlly has been funded in Round 15 of the Prototype Fund (https://prototypefund.de/project/chatally/).\n\nWe have no business model, yet. If you have any ideas or want to cooperate, let us know."
       ]
     },
     {
