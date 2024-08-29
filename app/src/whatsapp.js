@@ -5,11 +5,12 @@ let graphApi
 /** @type {undefined | Omit<import('@chatally/whatsapp-cloud').MessagesConfig, "graphApi">} */
 let messages
 
-if (!process.env.WA_PHONE_NUMBER_ID) {
-  // only for local debugging
-  graphApi = new GraphApiMock({ phoneNumberId: '1234', accessToken: 'ABCD' })
-  messages = { sequential: false }
-}
+console.log({ env: process.env })
+// if (!process.env.WA_PHONE_NUMBER_ID) {
+//   // only for local debugging
+//   graphApi = new GraphApiMock({ phoneNumberId: '1234', accessToken: 'ABCD' })
+//   messages = { sequential: false }
+// }
 
 /**
  * Firstly, we setup a WhatsApp Cloud Server, where all configuration is read
