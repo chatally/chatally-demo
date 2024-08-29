@@ -1,5 +1,10 @@
+.turbo
 @TODOS.md
+*.db
+*.db-shm
+*.db-wal
 app/.env
 app/generate-tokens.js
+media-cache
 media.db*
 node_modules/

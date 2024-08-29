@@ -1,0 +1,1586 @@
+{
+  "name": "Website",
+  "locale": "en-US",
+  "data": [
+    {
+      "intent": "section.1",
+      "utterances": [
+        "Chatbots made easy"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/#_top"
+      ]
+    },
+    {
+      "intent": "section.2",
+      "utterances": [
+        "Hosting your own chatbot is as easy as hosting an Express.js application",
+        "If you are a web developer and know how to host a web application with Express and node.js, ChatAlly will only surprise you with it's ease of use.",
+        "You won't need to start from scratch and learn a new language with all of it's development environment",
+        "Build on the skills that you already have.",
+        "Install two npm packages…",
+        "npm install @chatally/core @chatally/console",
+        "…create one Javascript file…",
+        "import { Application } from '@chatally/core'import { ConsoleServer } from '@chatally/console' new Application({ log: false }) //  .use(new ConsoleServer(\"ChatAlly\"))  .use(({ req, res }) => {    if (res.isWritable) {      res.write(`You said '${req.content}'`)    }  })  .listen()",
+        "…and start chatting with your bot on the console",
+        "For a full example, see our Getting Started guide."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/#hosting-your-own-chatbot-is-as-easy-as-hosting-an-expressjs-application"
+      ]
+    },
+    {
+      "intent": "section.3",
+      "utterances": [
+        "Integrate your chatbot with WhatsApp, Signal and AI without crazy hosting costs",
+        "Modules",
+        "ChatAlly is a minimal and flexible Node.js chat application framework that provides a robust set of features for your chatbot",
+        "It consists of a collection of npm modules that make building your own self-hosted chatbots quick and easy.",
+        "Integration",
+        "Connect your chatbot to WhatsApp or Signal, so your users can communicate with your application easily",
+        "Use one of the many modules readily available",
+        "Create your own natural chat experience with open-source AI, e.g",
+        "with TensorFlow.js or other more dedicated chat frameworks like nlp.js.",
+        "Middleware",
+        "It is also easy to build your own integration, e.g",
+        "for Huggingface's transformers.js",
+        "Natural language processing is only one part, add a consent manager, log training data from real chats, integrate your knowledge base or speech features",
+        "If you can't find, what you need, write your own middleware easily.",
+        "Community",
+        "Share your own middlware with others, get help from experienced users, share ideas for new features or fix a bug",
+        "Checkout our Github project or join our Discord server.",
+        "Documentation",
+        "ChatAlly gives you all the tools to get started quickly and evolve your chatbot into your very own support character for your users",
+        "To support you on your journey, documentation is essential, that is why it is an explicit work package in our project and will account for at least half of the effort",
+        "Check out our guides and examples."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/#integrate-your-chatbot-with-whatsapp-signal-and-ai-without-crazy-hosting-costs"
+      ]
+    },
+    {
+      "intent": "section.4",
+      "utterances": [
+        "Contribute to ChatAlly",
+        "All contributions are welcome: Join the community on Discord, provide feedback or bug fixes on Github, provide more usage examples, provide interesting middleware or another server (e.g",
+        "Telegram).",
+        "About us | Impressum"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/#contribute-to-chatally"
+      ]
+    },
+    {
+      "intent": "section.5",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.6",
+      "utterances": [
+        "🚀 Getting started",
+        "If you are a web developer and know how to host a web application with Express and node.js, ChatAlly will only surprise you with it's ease of use."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/#_top"
+      ]
+    },
+    {
+      "intent": "section.7",
+      "utterances": [
+        "🏗️ Installation",
+        "To get started, with the simplest possible chat application, you need to create an npm ESM project, install the core library, a chat server, e.g",
+        "the ConsoleServer and add some middleware.",
+        "ConsoleServer",
+        "npm init esnext -ynpm install @chatally/core @chatally/console"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/#️-installation"
+      ]
+    },
+    {
+      "intent": "section.8",
+      "utterances": [
+        "✍ Create the application",
+        "Create a file index.js in which you configure your application",
+        "index.js",
+        "import { ConsoleServer } from '@chatally/console'import { Application } from '@chatally/core' new Application({ log: false }) //  .use(new ConsoleServer(\"ChatAlly\"))  .use(({ req, res }) => {    if (res.isWritable) {      res.write(`You said '${req.content}'`)    }  })  .listen()",
+        "Here we create a new chat application, register the ConsoleServer and implement a very simple middleware, that just echoes the user input.",
+        "ConsoleServer",
+        "ChatAlly is fully typed, so you can get full support from your code editor (you might need to setup a tsconfig.json file).",
+        "See the guide Writing Middleware for details on how to write your own middleware.",
+        "You can now start the application by running",
+        "node index.js"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/#-create-the-application"
+      ]
+    },
+    {
+      "intent": "section.9",
+      "utterances": [
+        "🥪 Add middleware",
+        "Of course, this chatbot is quite boring, but you can make it more interesting by adding some middleware, e.g",
+        "a module for NLP (Natural Language Processing) like nlp.js.",
+        "Install the module",
+        "npm install @chatally/nlpjs",
+        "and add it to your configuration instead of the function echo",
+        "echo",
+        "import { ConsoleServer } from '@chatally/console'import { Application } from '@chatally/core'import { nlpjsMiddleware, trainNlp } from '@chatally/nlpjs' const app = new Application({ log: false })const nlp = await trainNlp(app.getLogger('nlp.js')) app //  .use(new ConsoleServer(\"nlp.js\"))  .use(nlpjsMiddleware(nlp))  .listen()",
+        "The function trainNlp creates a trained NLP module and expects a training corpus at corpus.json",
+        "For this example you can download a corpus.json from nlp.js' Github",
+        "We integrate nlp.js' logging with ChatAlly's by passing a logger from the application to nlp.js.",
+        "trainNlp",
+        "corpus.json",
+        "The function nlpjsMiddleware wraps the nlp.js Nlp.process(...) method in a ChatAlly middleware function.",
+        "nlpjsMiddleware",
+        "Nlp.process(...)",
+        "Now it should be a bit more fun talking to your chatbot.",
+        "For details how to train your NLP, see the nlp.js documentation."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/#-add-middleware"
+      ]
+    },
+    {
+      "intent": "section.10",
+      "utterances": [
+        "🤖 What next",
+        "The console server limits your audience severely, so maybe you want to try to connect your chatbot with WhatsApp and deploy it to a publicly accessible server.",
+        "You could also add more or different middleware, explore the middleware section in the sidebar or start writing your own middleware to add any missing piece.",
+        "If you first want to learn more about the core concepts, check out the reference documentation."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/#-what-next"
+      ]
+    },
+    {
+      "intent": "section.11",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.12",
+      "utterances": [
+        "Blog",
+        "Milestones",
+        "Backlog",
+        "Sprint Progress"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/#_top"
+      ]
+    },
+    {
+      "intent": "section.13",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/milestones/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.14",
+      "utterances": [
+        "Milestones",
+        "For our funding through the Prototype Fund, we had to propose some milestones, which you can find below",
+        "We will break down these work packages in our backlog and also continuously report our sprint progress.",
+        "I like milestones",
+        "It is always good to communicate your goals and at least be held responsible to communicate changes in your goals",
+        "Christian from ChatAlly"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/milestones/#_top"
+      ]
+    },
+    {
+      "intent": "section.15",
+      "utterances": [
+        "Work packages",
+        "In order to allow for an easy application of the chatbot toolbox, we need a simple and flexible architecture together with some basic building blocks, e.g",
+        "connectors for common clients",
+        "But most importantly we need good documentation, hence a major focus of the whole project is on documentation",
+        "Each workpackage contains documentation efforts, but there is also an extra package for dissemination.",
+        "These are the work packages:"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/milestones/#work-packages"
+      ]
+    },
+    {
+      "intent": "section.16",
+      "utterances": [
+        "Timeline",
+        "We plan to sketch the basic architecture until end of March, so that we can then select/adapt/implement the middleware and implement a proof of concept with the WhatsApp cloud-connector in April.",
+        "From there on, we will implement different usage scenarios, that demonstrate the flexibility of the architecture",
+        "We will add further building blocks as required for the scenarios, e.g",
+        "a Signal connector or a WhatsApp web-connector",
+        "Throughout this phase, the architecture is refined.",
+        "The results will be available as NPM packages for Javascript implementations and Docker containers and swarm configurations for integrations",
+        "We expect to finish all implementation results by end of July.",
+        "Towards the end of the project end of August, we will finalize the documentation, present results and prepare the wrapup of the PrototypeFund project."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/milestones/#timeline"
+      ]
+    },
+    {
+      "intent": "section.17",
+      "utterances": [
+        "Demo Day",
+        "Each round of the Prototype Fund ends with a demo day",
+        "We will present our project results there, it will be end of August",
+        "We will keep you updated, when the date is confirmed."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/milestones/#demo-day"
+      ]
+    },
+    {
+      "intent": "section.18",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.19",
+      "utterances": [
+        "Backlog",
+        "This is a breakdown of the work packages from our milestones into manageable pieces (epics, stories, tasks) that go into our sprint plannings",
+        "We will detail the breakdown as the respective feature gets closer to implementation."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#_top"
+      ]
+    },
+    {
+      "intent": "section.20",
+      "utterances": [
+        "Arc: Architecture"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#arc-architecture"
+      ]
+    },
+    {
+      "intent": "section.21",
+      "utterances": [
+        "App: Application"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#app-application"
+      ]
+    },
+    {
+      "intent": "section.22",
+      "utterances": [
+        "Servers (formerly ‘Connectors')"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#servers-formerly-connectors"
+      ]
+    },
+    {
+      "intent": "section.23",
+      "utterances": [
+        "CS: Console Server",
+        "A console server to chat with your application on the console",
+        "This server is meant for development and testing of your application."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#cs-console-server"
+      ]
+    },
+    {
+      "intent": "section.24",
+      "utterances": [
+        "RSWU: REST Server (for Web UI)"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#rswu-rest-server-for-web-ui"
+      ]
+    },
+    {
+      "intent": "section.25",
+      "utterances": [
+        "WACS: WhatsApp-Cloud Server"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#wacs-whatsapp-cloud-server"
+      ]
+    },
+    {
+      "intent": "section.26",
+      "utterances": [
+        "SS: Signal Server"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#ss-signal-server"
+      ]
+    },
+    {
+      "intent": "section.27",
+      "utterances": [
+        "WAWS: WhatsApp-Web Server"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#waws-whatsapp-web-server"
+      ]
+    },
+    {
+      "intent": "section.28",
+      "utterances": [
+        "GMwI: General Middleware & Integrations"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#gmwi-general-middleware--integrations"
+      ]
+    },
+    {
+      "intent": "section.29",
+      "utterances": [
+        "NLP"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#nlp"
+      ]
+    },
+    {
+      "intent": "section.30",
+      "utterances": [
+        "NLU"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#nlu"
+      ]
+    },
+    {
+      "intent": "section.31",
+      "utterances": [
+        "Logic"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#logic"
+      ]
+    },
+    {
+      "intent": "section.32",
+      "utterances": [
+        "NLG"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#nlg"
+      ]
+    },
+    {
+      "intent": "section.33",
+      "utterances": [
+        "Speech-to-Text"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#speech-to-text"
+      ]
+    },
+    {
+      "intent": "section.34",
+      "utterances": [
+        "Text-to-Speech"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#text-to-speech"
+      ]
+    },
+    {
+      "intent": "section.35",
+      "utterances": [
+        "Expl: Examples",
+        "The following ideas could be realized as examples, they still need to be prioritized, because I will not have enough time to cover all of them."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/backlog/#expl-examples"
+      ]
+    },
+    {
+      "intent": "section.36",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.37",
+      "utterances": [
+        "Sprint Progress",
+        "Here you will find all information about our development sprints in chronologically reverse order, i.e",
+        "newest first",
+        "If you want to find out whats coming next, check out our backlog."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#_top"
+      ]
+    },
+    {
+      "intent": "section.38",
+      "utterances": [
+        "Sprint 9 (CW 18, Apr 29-May 03)",
+        "Goal: A fully functional example including documentation"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-9-cw-18-apr-29-may-03"
+      ]
+    },
+    {
+      "intent": "section.39",
+      "utterances": [
+        "Sprint 8 (CW 17, Apr 22-26)",
+        "Goal: Finalize integration layer und core middlewares",
+        "WhatsApp cloud server and nlp.js middleware still need to be finalized."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-8-cw-17-apr-22-26"
+      ]
+    },
+    {
+      "intent": "section.40",
+      "utterances": [
+        "Sprint 7 (CW 16, Apr 15-19)",
+        "Goal: Simple chatbot example according to framework architecture is implemented"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-7-cw-16-apr-15-19"
+      ]
+    },
+    {
+      "intent": "section.41",
+      "utterances": [
+        "Sprint 6 (CW 15, Apr 08-12)",
+        "Goal: Align interfaces in architecture with common representatives of NLP frameworks (nlp.js, wit.ai, Rasa)"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-6-cw-15-apr-08-12"
+      ]
+    },
+    {
+      "intent": "section.42",
+      "utterances": [
+        "Sprint 5 (CW 14, Apr 01-05)",
+        "Goal: Publish WhatsApp-Cloud-Connector, that is standalone usable in a node.js runtime"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-5-cw-14-apr-01-05"
+      ]
+    },
+    {
+      "intent": "section.43",
+      "utterances": [
+        "Sprint 4 (CW 13, Mar 25-29)",
+        "Vacation"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-4-cw-13-mar-25-29"
+      ]
+    },
+    {
+      "intent": "section.44",
+      "utterances": [
+        "Sprint 3 (CW 12, Mar 18-22)",
+        "Goal: Identify usability gaps and derive requirements with Namibian youths."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-3-cw-12-mar-18-22"
+      ]
+    },
+    {
+      "intent": "section.45",
+      "utterances": [
+        "Sprint 2 (CW 11, Mar 11-15)",
+        "Goal: Identify benefits and challenges with respect to middleware candidates.",
+        "Rationale: We want to identify the best middleware candidate for our chatbot platform",
+        "This sprint will be dedicated to evaluating the benefits and challenges of different middleware candidates.",
+        "As a left-over from last sprint, we will also publish our current state of the Deno-based WhatsApp connector (not as an NPM package, though).",
+        "whatsapp-deno-connector"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-2-cw-11-mar-11-15"
+      ]
+    },
+    {
+      "intent": "section.46",
+      "utterances": [
+        "Sprint 1 (CW 10, Mar 04-08)",
+        "Goal: Publish a first alpha version of the WhatsApp connector.",
+        "Rationale: As a baseline of the CI/CD process and for all future integrations, we want to extract the existing WhatsApp connector from our chatbot prototype and publish it as an NPM package within a CI/CD pipeline.",
+        "Besides that first step, setting up the website for the documentation process and all the other infrastructure is important in this sprint."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/progress/#sprint-1-cw-10-mar-04-08"
+      ]
+    },
+    {
+      "intent": "section.47",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/tags/planning/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.48",
+      "utterances": [
+        "Planning",
+        "Milestones",
+        "Backlog",
+        "Sprint Progress"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/tags/planning/#_top"
+      ]
+    },
+    {
+      "intent": "section.49",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/tags/continuous-updates/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.50",
+      "utterances": [
+        "Continuous Updates",
+        "Backlog",
+        "Sprint Progress"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/blog/tags/continuous-updates/#_top"
+      ]
+    },
+    {
+      "intent": "section.51",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/middleware/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.52",
+      "utterances": [
+        "Writing Middleware",
+        "A ChatAlly application consists of one or more servers that connect the application to external clients, like WhatsApp, Signal or websockets, and middleware",
+        "The middleware is responsible for processing the request from any server and eventually generating a response",
+        "The work can be shared between all the middleware modules."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/middleware/#_top"
+      ]
+    },
+    {
+      "intent": "section.53",
+      "utterances": [
+        "Execution context",
+        "All middleware modules are provided with an application context",
+        "The context contains the incoming request and a response object, that can be used to transmit outgoing messages.",
+        "See the reference documentation for details."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/middleware/#execution-context"
+      ]
+    },
+    {
+      "intent": "section.54",
+      "utterances": [
+        "async, await next() and execution order",
+        "All modules are executed in order",
+        "Modules can be synchronous or asynchronous and will be awaited by the application before continuing with the next module.",
+        "In the upstream leg of the processing pipeline you could add middleware that analyzes the request or prepares data and puts it into the processing context",
+        "You could then add some middleware that manages the dialog flow and finally some modules that generate a response and finalize it.",
+        "The following example demonstrates different ways to use the execution order of middleware modules and how they can exchange data throughout the request handling.",
+        "import { ConsoleServer } from '@chatally/console';import { Application } from '@chatally/core'; /** * Small helper to demonstrate async execution * @param {number} seconds */async function sleep(seconds) {  await new Promise(resolve => setTimeout(resolve, seconds * 1000))} new Application({  // You should initialize data, to have type checking in the middleware  data: {    aName: \"\",    bName: \"\",  }}) //  .use(new ConsoleServer(\"ChatAlly\"))  .use(async function a({ res, next, data }) {    // You can await promises in your middleware,    // your middleware will also be awaited by the application    await sleep(1);    res.write(\"My name is Anne",
+        "What is your name?\");    data.aName = \"Anne\";    // Wait for all other downstream modules and execute the rest of this    // middleware after them (on the downstream leg)    await next();    // Results from following middleware should now be accessible    if (data.bName) {      res.write(`I guess ${data.bName} said something, too.`)    }  })  .use(async function b({ res, data, log }) {    // Define an async background task    const bgTask = async () => {      await sleep(2);      log.info(\"Something happened in the background.\");    };    // Do not await background tasks    bgTask();    await sleep(1);    res.write(\"My name is Bob.\");    data.bName = \"Bob\";  })  .listen()",
+        "You can even execute middleware after a request has been ended, e.g",
+        "for logging data."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/middleware/#async-await-next-and-execution-order"
+      ]
+    },
+    {
+      "intent": "section.55",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/servers/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.56",
+      "utterances": [
+        "Writing Servers"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/servers/#_top"
+      ]
+    },
+    {
+      "intent": "section.57",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/deployment/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.58",
+      "utterances": [
+        "Deploy your Application"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/deployment/#_top"
+      ]
+    },
+    {
+      "intent": "section.59",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.60",
+      "utterances": [
+        "Core",
+        "A web application starts off with an HTTP server that creates a request and an empty response object and hands it over to the application framework, e.g",
+        "Express or Koa to generate a response.",
+        "A ChatAlly chat application is very similar: It starts off with a chat server that creates a request and response object and hands it over to the ChatAlly application",
+        "The application dispatches it to all the middleware that should generate the response and returns it to the server to send it out to the user client.",
+        "The core module is published as @chatally/core on npmjs.com",
+        "Find the sources on Github.",
+        "TLDR;",
+        "If you want to get your fingers dirty quickly, go to the Getting started guide",
+        "Or check out any of the examples."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/#_top"
+      ]
+    },
+    {
+      "intent": "section.61",
+      "utterances": [
+        "Structure",
+        "The core consists of the following parts:",
+        "Application",
+        "listen()",
+        "Request",
+        "Response",
+        "next()",
+        "log",
+        "data",
+        "@chatally/logger",
+        "BaseLogger",
+        "The following pages will give you detailed reference documentation of all modules."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/#structure"
+      ]
+    },
+    {
+      "intent": "section.62",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/application/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.63",
+      "utterances": [
+        "Application"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/application/#_top"
+      ]
+    },
+    {
+      "intent": "section.64",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/servers/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.65",
+      "utterances": [
+        "Servers"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/servers/#_top"
+      ]
+    },
+    {
+      "intent": "section.66",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.67",
+      "utterances": [
+        "Middleware",
+        "export type Middleware<D = unknown> =  | ((params: Context<D>) => unknown)  | ((params: Context<D>) => Promise<unknown>)"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#_top"
+      ]
+    },
+    {
+      "intent": "section.68",
+      "utterances": [
+        "Context",
+        "The ChatAlly application gathers an execution context for each middleware module with a request and a response object, which are provided by the server that triggered the handling.",
+        "/** * Context used for dispatching to middleware",
+        "*/export interface Context<D> {  /** Request that triggered the handling */  readonly req: ChatRequest  /** Response for the request */  readonly res: ChatResponse  /** Trigger dispatching to the next middleware",
+        "*/  readonly next: () => Promise<void>  /** Access to media assets */  readonly media: IMediaServer  /** Context-specific logger for the middleware */  readonly log: Logger  /** Arbitrary data storage */  readonly data: D & Record<string, unknown>}"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#context"
+      ]
+    },
+    {
+      "intent": "section.69",
+      "utterances": [
+        "ChatRequest"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#chatrequest"
+      ]
+    },
+    {
+      "intent": "section.70",
+      "utterances": [
+        "ChatResponse"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#chatresponse"
+      ]
+    },
+    {
+      "intent": "section.71",
+      "utterances": [
+        "Next"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#next"
+      ]
+    },
+    {
+      "intent": "section.72",
+      "utterances": [
+        "Media"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#media"
+      ]
+    },
+    {
+      "intent": "section.73",
+      "utterances": [
+        "Log",
+        "The log is a context-specific logger for the middleware, that is created as a child logger of the application.",
+        "log",
+        "For details, have a look at the Logger reference documentation"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#log"
+      ]
+    },
+    {
+      "intent": "section.74",
+      "utterances": [
+        "Data"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/middleware/#data"
+      ]
+    },
+    {
+      "intent": "section.75",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/context/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.76",
+      "utterances": [
+        "Context"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/context/#_top"
+      ]
+    },
+    {
+      "intent": "section.77",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/messages/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.78",
+      "utterances": [
+        "Messages"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/messages/#_top"
+      ]
+    },
+    {
+      "intent": "section.79",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.80",
+      "utterances": [
+        "Logger Facade",
+        "The logger facade is published as separate package @chatally/logger on npmjs.com",
+        "Find the sources on Github.",
+        "Install the logger facade by",
+        "npm install @chatally/logger"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#_top"
+      ]
+    },
+    {
+      "intent": "section.81",
+      "utterances": [
+        "Logger",
+        "Logger",
+        "Logger facade interface",
+        "This is the common interface for a simple logger that you can use in your library, that can easily be implemented with any logging framework and does not introduce any dependencies."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#logger"
+      ]
+    },
+    {
+      "intent": "section.82",
+      "utterances": [
+        "Logger.level: Level",
+        "Logger.level: Level",
+        "Log level of this logger."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#loggerlevel-level"
+      ]
+    },
+    {
+      "intent": "section.83",
+      "utterances": [
+        "Logger.name?: string",
+        "Logger.name?: string",
+        "Optional name of this logger."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#loggername-string"
+      ]
+    },
+    {
+      "intent": "section.84",
+      "utterances": [
+        "Logger.data?: unknown",
+        "Logger.data?: unknown",
+        "Optional data of this logger."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#loggerdata-unknown"
+      ]
+    },
+    {
+      "intent": "section.85",
+      "utterances": [
+        "Logger.isLevel(level: Level): boolean",
+        "Logger.isLevel(level: Level): boolean",
+        "Check if this logger is active on the given level."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#loggerislevellevel-level-boolean"
+      ]
+    },
+    {
+      "intent": "section.86",
+      "utterances": [
+        "Logger.child(options?: LoggerOptions): Logger",
+        "Logger.child(options?: LoggerOptions): Logger",
+        "Create a child logger",
+        "The child logger inherits all properties of the parent logger",
+        "Properties can be overwritten by the options",
+        "Options can be as follows",
+        "export interface LoggerOptions {  /** Initial log level of the logger */  level?: Level  /** Optional name of the logger */  name?: string  /** Additional data to log with each call to a log method */  data?: unknown}"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#loggerchildoptions-loggeroptions-logger"
+      ]
+    },
+    {
+      "intent": "section.87",
+      "utterances": [
+        "Log methods",
+        "The logger has log methods according to it's log levels: debug(...), info(...), warn(...), error(...)",
+        "debug(...)",
+        "info(...)",
+        "warn(...)",
+        "error(...)",
+        "All log methods have the same signature:",
+        "(msg: string, ...args: any[]) => unknown; // or(data: unknown, msg?: string, ...args: any[]) => unknown",
+        "The message can be a printf-like template, it will be formatted using the rest arguments",
+        "The optional data will be logged after the message."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#log-methods"
+      ]
+    },
+    {
+      "intent": "section.88",
+      "utterances": [
+        "Default implementations",
+        "The package comes with two default implementations."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#default-implementations"
+      ]
+    },
+    {
+      "intent": "section.89",
+      "utterances": [
+        "BaseLogger",
+        "Basic logger implementation, that logs to the console by default.",
+        "This logger is not optimized and should only be used for development",
+        "For test purposes, the output can be redirected to any Writable by setting the out property",
+        "Also for test purposes you can turn off the timestamps, by setting the timestamps property to false.",
+        "Writable",
+        "out",
+        "timestamps",
+        "const log = new BaseLogger()log.out = new StringWritable()log.timestamps = false"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#baselogger"
+      ]
+    },
+    {
+      "intent": "section.90",
+      "utterances": [
+        "NoLogger",
+        "Default implementation of Logger interface with all no-ops."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/logger/#nologger"
+      ]
+    },
+    {
+      "intent": "section.91",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.92",
+      "utterances": [
+        "Middleware"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/#_top"
+      ]
+    },
+    {
+      "intent": "section.93",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/consent-manager/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.94",
+      "utterances": [
+        "Consent Manager",
+        "The Consent Manager makes it easy, to require from each new user of the chatbot, to consent to automatic processing of their data before proceeding",
+        "This allows you to comply with your local data protection laws, e.g",
+        "GDPR or DSGVO."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/consent-manager/#_top"
+      ]
+    },
+    {
+      "intent": "section.95",
+      "utterances": [
+        "Usage",
+        "Install the required packages",
+        "npm install @chatally/consent-manager",
+        "Create a main module, that sets up the Consent Manager and integrates it with your ChatAlly application.",
+        "import { ConsoleServer } from '@chatally/console'import { Application } from '@chatally/core'import { content } from '@chatally/utils'import { ConsentManager } from '@chatally/consent-manager' const app = new Application({ log: false }) app //  .use(new ConsoleServer('Bot'))  .use(new ConsentManager())  .use(({ req, res }) => {    res.write(`You said: ${content(req)}`)  })  .listen()",
+        "The consent manager will repeat the request for consent until a new user consents",
+        "It will then store the message id and a timestamp for the user's consent and continue the conversation with the initial message from the user."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/consent-manager/#usage"
+      ]
+    },
+    {
+      "intent": "section.96",
+      "utterances": [
+        "Configuration",
+        "The Consent Manager has meaningful defaults and will ask new users for consent in a fairly generic manner (in English)",
+        "Consent data will be stored in a local SQLite database.",
+        "You can configure the following aspects of the Consent Manager.",
+        "export interface Options {  /** Path to the database file */  path: string  /**   * Message to ask for consent",
+        "  *   * If you use a button message, make sure that the first button is the accept   * button or define the acceptCommand   */  askForConsent: string | ChatMessage  /** Command id for acceptance, default \"accept\" */  acceptCommand: string  /** Regular expression for acceptance, default \"/I accept/i\" */  acceptRegExp: RegExp  /** Message to thank for consent */  thankForConsent: string | ChatMessage}"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/consent-manager/#configuration"
+      ]
+    },
+    {
+      "intent": "section.97",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/history/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.98",
+      "utterances": [
+        "History",
+        "Coming soonish, see the backlog."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/history/#_top"
+      ]
+    },
+    {
+      "intent": "section.99",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/nlpjs/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.100",
+      "utterances": [
+        "nlp.js",
+        "ChatAlly nlp.js Middleware is a middleware wrapper around a trained nlp.js NLP module and provides a utility function to train an NLP module.",
+        "nlp.js is a FOSS chatbot library provided by the Axa insurance group."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/nlpjs/#_top"
+      ]
+    },
+    {
+      "intent": "section.101",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/tensorflow/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.102",
+      "utterances": [
+        "TensorFlow",
+        "TensorFlow.js",
+        "Coming soonish, see the backlog."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/middleware/tensorflow/#_top"
+      ]
+    },
+    {
+      "intent": "section.103",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.104",
+      "utterances": [
+        "Servers"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/#_top"
+      ]
+    },
+    {
+      "intent": "section.105",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/console/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.106",
+      "utterances": [
+        "Console",
+        "ChatAlly Console Server that reads input from the console, dispatches it to a chat application and outputs responses on the console.",
+        "You can configure the displayName, prompt, greeting, goodBye and the stopToken simply by setting these properties",
+        "There are also some colors you can configure: nameColor, promptColor and responseColor.",
+        "displayName",
+        "prompt",
+        "greeting",
+        "goodBye",
+        "stopToken",
+        "nameColor",
+        "promptColor",
+        "responseColor"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/console/#_top"
+      ]
+    },
+    {
+      "intent": "section.107",
+      "utterances": [
+        "Usage",
+        "Install the package",
+        "npm install @chatally/console",
+        "Create a standalone console server and start listening",
+        "import { ConsoleServer } from '@chatally/console' new ConsoleServer(async (req, res) => {  res.end(`You said: '${req.content}'`)}).listen()"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/console/#usage"
+      ]
+    },
+    {
+      "intent": "section.108",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/signal/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.109",
+      "utterances": [
+        "Signal",
+        "Coming soonish, see the backlog."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/signal/#_top"
+      ]
+    },
+    {
+      "intent": "section.110",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/websocket/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.111",
+      "utterances": [
+        "Websocket",
+        "Coming soonish, see the backlog."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/websocket/#_top"
+      ]
+    },
+    {
+      "intent": "section.112",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.113",
+      "utterances": [
+        "WhatsApp Cloud",
+        "WhatsApp Cloud is a ChatAlly server that integrates the WhatsApp Cloud API endpoints Webhooks, Messages and Media into one server module, that can be used in a ChatAlly application.",
+        "Note",
+        "⚠️ The WhatsApp Cloud API is only available to WhatsApp Business accounts",
+        "One phone mumber can only be registered as business account or as a personal number for the WhatsApp app",
+        "So, you will probably need a new phone number for your chatbot.",
+        "🧪 However, for test purposes, you can use a WhatsApp test number, where you can add up to five users, that can communicate with this number.",
+        "🚧 There are other limitations, that apply to WhatsApp business accounts, e.g",
+        "you cannot add them to groups and you cannot send out initiative messages, except for approved templates."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#_top"
+      ]
+    },
+    {
+      "intent": "section.114",
+      "utterances": [
+        "Usage",
+        "Install the required packages",
+        "npm install @chatally/whatsapp-cloud",
+        "Create a main module, that sets up the WhatsApp cloud server and integrates it with your ChatAlly application.",
+        "import { Application } from '@chatally/core'import { WhatsAppCloud } from '@chatally/whatsapp-cloud' const phoneNumberId = 'YOUR PHONE NUMBER'const accessToken = 'YOUR ACCESS TOKEN'const verifyToken = 'YOUR WEBHOOKS VERIFY TOKEN'const secret = 'YOUR WEBHOOKS VALIDATION SECRET' const whatsapp = new WhatsAppCloud({  env: false, // do not read configuration from environment variables  file: false, // do not read configuration from default configuration files  graphApi: { phoneNumberId, accessToken },  webhooks: { verifyToken, secret },}) new Application() //  .use(whatsapp)  .use(({ req, res }) => {    if (res.isWritable) {      res.write(`You said '${req.content}' and I don't know what it means.`)    }  })  .listen()",
+        "In this example, we fully configure the WhatsApp Cloud server with a Javascript object",
+        "You could also provide options as environment variable and from a file.",
+        "The WhatsApp Cloud server starts a webserver in the background, that provides the webhooks callback endpoint to the WhatsApp cloud.",
+        "Once you have this deployed to a publicly accessible web server, you can register your WhatsApp business account to receive notifications for incoming messages or status updates",
+        "Registration is only required once."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#usage"
+      ]
+    },
+    {
+      "intent": "section.115",
+      "utterances": [
+        "Configuration",
+        "To set up a WhatsApp Cloud server, you must provide some configuration, either explicitly as a Javascript object, a configuration file, environment variables or a combination of it",
+        "A minimal configuration must contain:",
+        "graphApi.phoneNumberId",
+        "graphApi.accessToken",
+        "Authorization: Bearer",
+        "webhooks.verifyToken",
+        "webhooks.secret",
+        "There are some more options",
+        "This is an example configuration file (whatsapp-cloud.config.yaml) with all configuration options and there default values:",
+        "whatsapp-cloud.config.yaml",
+        "# name: WhatsAppCloud# immediate: falsewebhooks:  # [Optional] Port to listen on [`default=3000`]  # port: 3000  # Look these up in your WhatsApp Business settings  # Token to verify webhooks registration  verifyToken: <YOUR VERIFY TOKEN>  # Secret to verify payload signatures  secret: <YOUR SECRET>graphApi:  # [Optional] Base URL for Meta GraphAPI  # baseUrl: \"graph.facebook.com\"  # [Optional] Port at which to reach Meta GraphAPI  # basePort: undefined  # [Optional] Version of the Meta GraphAPI  # version: 20  # Look these up in your WhatsApp Business settings  # the phone number id of the WhatsApp business account  phoneNumberId: <YOUR PHONE NUMBER>  # Access token to use as authorization bearer",
+        " accessToken: <YOUR ACCESS TOKEN>media:  # [Optional] Path to a directory where to store downloaded media assets  # [default=\"media\"]  downloadDir: ./wa-media  # [Optional] Path to the database to store media ids  # [default=\"media.db\"]  dbPath: ./wa-media/media-ids.db"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#configuration"
+      ]
+    },
+    {
+      "intent": "section.116",
+      "utterances": [
+        "Reference",
+        "In your application, you can use some functionality of the integrated endpoints through the server's interface."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#reference"
+      ]
+    },
+    {
+      "intent": "section.117",
+      "utterances": [
+        "async send(to: string, ...outgoing: ChatMessage[]): Promise<void>",
+        "async send(to: string, ...outgoing: ChatMessage[]): Promise<void>",
+        "Send message(s) to recipient.",
+        "Messages are sent “in order” once the Webhooks server has been started with a call to listen(), i.e",
+        "the next message to the same recipient is only sent out, once a delivered status has been received.",
+        "listen()",
+        "delivered",
+        "to",
+        "+",
+        "...outgoing",
+        "Note",
+        "🚧 Remember the above limitations",
+        "You can only send messages to a user within a 24 hour window, if the user has initiated the conversation."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#async-sendto-string-outgoing-chatmessage-promisevoid"
+      ]
+    },
+    {
+      "intent": "section.118",
+      "utterances": [
+        "async upload(file: string): Promise<string>",
+        "async upload(file: string): Promise<string>",
+        "Upload a file to Facebook's media endpoint.",
+        "file",
+        "@returns"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#async-uploadfile-string-promisestring"
+      ]
+    },
+    {
+      "intent": "section.119",
+      "utterances": [
+        "async download(id): Promise<string>",
+        "async download(id): Promise<string>",
+        "id",
+        "downloadDir",
+        "@returns"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#async-downloadid-promisestring"
+      ]
+    },
+    {
+      "intent": "section.120",
+      "utterances": [
+        "Running standalone",
+        "If you do not use the WhatsApp Cloud server in a ChatAlly application, you have to register a dispatch method explicitly and call listen() to start the server.",
+        "dispatch",
+        "listen()"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#running-standalone"
+      ]
+    },
+    {
+      "intent": "section.121",
+      "utterances": [
+        "set dispatch(dispatch: Dispatch)",
+        "set dispatch(dispatch: Dispatch)",
+        "Set the dispatch method to generate a response.",
+        "You must set this beforte calling listen().",
+        "listen()",
+        "dispatch",
+        "Dispatch must be a function (sync or async) that takes a Request and a Response and returns void."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#set-dispatchdispatch-dispatch"
+      ]
+    },
+    {
+      "intent": "section.122",
+      "utterances": [
+        "listen(port?: number): void",
+        "listen(port?: number): void",
+        "Start the underlying Webhooks API server.",
+        "This call is long-running and will only return, once the server has stopped",
+        "You must set dispatch before starting to listen, otherwise notifications would have no effect.",
+        "dispatch",
+        "port",
+        "See https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#listenport-number-void"
+      ]
+    },
+    {
+      "intent": "section.123",
+      "utterances": [
+        "See also the WhatsApp Business Documentation"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#see-also-the-whatsapp-business-documentation"
+      ]
+    },
+    {
+      "intent": "section.124",
+      "utterances": [
+        "Cloud API"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#cloud-api"
+      ]
+    },
+    {
+      "intent": "section.125",
+      "utterances": [
+        "Webhooks"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#webhooks"
+      ]
+    },
+    {
+      "intent": "section.126",
+      "utterances": [
+        "Messages"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#messages"
+      ]
+    },
+    {
+      "intent": "section.127",
+      "utterances": [
+        "Media"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-cloud/#media"
+      ]
+    },
+    {
+      "intent": "section.128",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-web/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.129",
+      "utterances": [
+        "WhatsApp Web",
+        "Coming soonish, see the backlog."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/servers/whatsapp-web/#_top"
+      ]
+    },
+    {
+      "intent": "section.130",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/examples/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.131",
+      "utterances": [
+        "Examples",
+        "For most people, also for us, it is easiest to understand concepts from examples",
+        "They also provide a good starting point for your own chatbot",
+        "That is, why we will provide a set of easy to deploy and understand examples."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/examples/#_top"
+      ]
+    },
+    {
+      "intent": "section.132",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/examples/console-chat/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.133",
+      "utterances": [
+        "Console Chat"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/examples/console-chat/#_top"
+      ]
+    },
+    {
+      "intent": "section.134",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/examples/nlpjs-web-chat/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.135",
+      "utterances": [
+        "nlp.js Web Chat"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/examples/nlpjs-web-chat/#_top"
+      ]
+    },
+    {
+      "intent": "section.136",
+      "utterances": [
+        "About"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/about/#_top"
+      ]
+    },
+    {
+      "intent": "section.137",
+      "utterances": [
+        "Who is behind ChatAlly?",
+        "For now it is only me, Christian, co-founder of the non-profit organization dooiy, that provides step-by-step instructions for good hacks, that make life easier",
+        "dooiy's focus audience are users in underserved communities, i.e",
+        "mainly people in slums or rural areas living in extreme poverty.",
+        "In this context, for a few reasons, we were looking for an easy way to distribute these instructions via WhatsApp",
+        "Only to find out, that this becomes very expensive or complicated, if you want to do it right and according to European data protection laws",
+        "Because of lack of money, we chose the difficult route and implemented our own solution that allows us, to (fairly) easily create chatbots from Markdown files",
+        "It is currently being prototyped in Mali with an instruction from CoolVeg for a clay pot cooler.",
+        "I proposed to the Prototype Fund to enhance this solution and make it free open-source",
+        "This is how ChatAlly was born",
+        "I am currently in the process of developing the first version of ChatAlly and am looking for contributors and users to help make it a success, so that it can empower small organizations and communities to deploy their own chatbots affordably and GDPR-compliant.",
+        "While there may seem to be open-source or free platforms at first glance, the quotas of free offerings are severely limited, and open-source typically only refers to the Software Development Kit (SDK)",
+        "Data control usually lies with the platform providers",
+        "True FOSS alternatives such as frameworks and libraries for chatbots are complex to set up and do not support seamless integration with popular messenger clients.",
+        "With ChatAlly, our aim is to bring these components together into a plug-and-play solution that can be easily self-hosted.",
+        "Impressum"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/about/#who-is-behind-chatally"
+      ]
+    },
+    {
+      "intent": "section.138",
+      "utterances": [
+        "Impressum",
+        "ChatAlly is hosted in Germany, so this is a legal notice according to German law."
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/impressum/#_top"
+      ]
+    },
+    {
+      "intent": "section.139",
+      "utterances": [
+        "Angaben gemäß §5 TMG",
+        "Dieses Impressum gilt für die Website chatally.org",
+        "Inhaltlich verantwortlich und Ansprechpartner für den Datenschutz",
+        "Christian Fuß Pfarrstr",
+        "107 10317 Berlin",
+        "Telefon +49 (0)30/28625264 E-Mail [email protected]"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/impressum/#angaben-gemäß-5-tmg"
+      ]
+    }
+  ]
+}

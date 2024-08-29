@@ -1,17 +1,25 @@
 {
   "name": "chatally-demo",
   "type": "module",
-  "module": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "private": true,
+  "module": "src/app.js",
+  "keywords": [
+    "chatally",
+    "demo"
+  ],
+  "author": "info@chatally.org",
+  "license": "MIT",
+  "description": "Chatally demo app",
   "dependencies": {
-    "@chatally/core": "^0.0.10",
-    "@chatally/utils": "^0.0.0",
-    "@chatally/whatsapp-cloud": "^0.0.9",
-    "dotenv": "^16.4.5",
-    "nanoid": "^5.0.7"
+    "@chatally/consent-manager": "*",
+    "@chatally/console": "*",
+    "@chatally/core": "*",
+    "@chatally/logger": "*",
+    "@chatally/nlpjs": "*",
+    "@chatally/utils": "*",
+    "@chatally/whatsapp-cloud": "*",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^20.14.10"

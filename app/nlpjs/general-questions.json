@@ -1,0 +1,53 @@
+{
+  "name": "General Questions",
+  "locale": "en-US",
+  "data": [
+    {
+      "intent": "gq.common",
+      "utterances": [
+        "whom can i ask stuff",
+        "where do i find the code",
+        "how are you earning money"
+      ],
+      "answers": [
+        "Ooops"
+      ]
+    },
+    {
+      "intent": "gq.getting-started",
+      "utterances": [
+        "how do i get started",
+        "where do i begin",
+        "how do i start",
+        "how can i install it"
+      ],
+      "answers": [
+        "There is a very easy to follow __Getting Started__ guide on our website. You might want to have a look:\n\nhttps://chatally.org/guides"
+      ]
+    },
+    {
+      "intent": "gq.whatsapp",
+      "utterances": [
+        "do you support whatsapp",
+        "can i use whatsapp",
+        "how do i install whatsapp",
+        "how about whatsapp"
+      ],
+      "answers": [
+        "Of course, WhatsApp is supported. Currently, we support WhatsApp Cloud API with a business account.\n\nHave a closer look at the docs\n\nhttps://chatally.org/reference/servers/whatsapp-cloud"
+      ]
+    },
+    {
+      "intent": "gq.signal",
+      "utterances": [
+        "do you support signal",
+        "can i use signal",
+        "how do i install signal",
+        "how about signal"
+      ],
+      "answers": [
+        "Signal support is currently being implemented. For updates, have a look at \n\nhttps://chatally.org/reference/servers/signal"
+      ]
+    }
+  ]
+}
