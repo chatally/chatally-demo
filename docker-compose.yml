@@ -12,6 +12,7 @@ services:
       - traefik_net
       - bridge
     volumes:
+      - ${PWD}/data:/usr/src/app/data
       # Time sync with host
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro

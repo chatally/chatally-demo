@@ -5,12 +5,11 @@ let graphApi
 /** @type {undefined | Omit<import('@chatally/whatsapp-cloud').MessagesConfig, "graphApi">} */
 let messages
 
-console.log({ env: process.env })
-// if (!process.env.WA_PHONE_NUMBER_ID) {
-//   // only for local debugging
-//   graphApi = new GraphApiMock({ phoneNumberId: '1234', accessToken: 'ABCD' })
-//   messages = { sequential: false }
-// }
+if (!process.env.WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN) {
+  // only for local debugging
+  graphApi = new GraphApiMock({ phoneNumberId: '1234', accessToken: 'ABCD' })
+  messages = { sequential: false }
+}
 
 /**
  * Firstly, we setup a WhatsApp Cloud Server, where all configuration is read
@@ -39,6 +38,7 @@ console.log({ env: process.env })
  */
 export const whatsapp = new WhatsAppCloud({
   webhooks: { path: '/whatsappcloud' },
+  media: { dbPath: 'data/wa-media-ids.db' },
   graphApi,
   messages,
 })

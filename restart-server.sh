@@ -24,6 +24,9 @@ echo "Building required docker image..."
 docker build --tag "chatally/demo-app" .
 echo -e "\b\b ✔️"
 
+# Create data directory (if it does not exist)
+mkdir -p data
+
 ## Run
 export SITE="${site}"
 export STACK="${stack}"
