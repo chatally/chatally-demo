@@ -40,7 +40,7 @@ const menu = {
 
 /** @type {import('@chatally/core').ChatMessage} */
 const intro = {
-  type: 'text',
+  type: 'buttons',
   content: `ChatAlly is an application framework for self-hosted chatbots, similar to Express.js for web applications.
 
 Self-hosting might be important to you, if you **care about data protection**, want to make sure, your **hosting costs do not go crazy** or you want the flexibility to **create a unique chat experience** for your users.
@@ -49,24 +49,40 @@ The architecture and all it's interfaces are very open, so that it is easy to in
 
 If you want to get a bit more of an overview, visit my website at
 
-https://chatally.org`,
+https://chatally.org
+
+Next up would be, how to get started`,
+  actions: [
+    {
+      command: '/getting-started',
+      title: '🚀 Getting Started',
+    },
+  ]
 }
 
 /** @type {import('@chatally/core').ChatMessage} */
 const gettingStarted = {
-  type: 'text',
-  content: `Getting started is really easy. If you are a web developer, I assume you have \`node.js\` and \`npm\` installed, then just do
+  type: 'buttons',
+  content: `Getting started is really easy. If you are a web developer, I assume you have node.js and npm installed, then just do
 
 \`npm install @chatally/core @chatally/console\`
 
 and start creating your application. To continue, have a look at
 
-https://chatally.org/guides`,
+https://chatally.org/guides
+
+If you want to know, where to find the documentation, let me know`,
+  actions: [
+    {
+      command: '/documentation',
+      title: '📗 Documentation',
+    },
+  ]
 }
 
 /** @type {import('@chatally/core').ChatMessage} */
 const documentation = {
-  type: 'text',
+  type: 'buttons',
   content: `Documentation is an important part of ChatAlly, so we spend quite some effort to create comprehensive documentation and keep it up to date.
 
 Find the reference documentation at
@@ -76,7 +92,15 @@ Create a Github issue, if you find something missing
 https://github.com/chatally/chatally/issues
 
 Get support or discuss upcoming features with the community in Discord
-https://discord.gg/Sb8ECsQCgr`,
+https://discord.gg/Sb8ECsQCgr
+
+If you think, this sounds great and you want to spread the word, recommend ChatAlly`,
+  actions: [
+    {
+      command: '/recommend',
+      title: '📢 Recommend',
+    },
+  ]
 }
 
 /** @type {import('@chatally/core').ChatMessage} */
@@ -108,7 +132,7 @@ export const welcomeMenu = async ({ req, res }) => {
   const command = req.type === 'action'
     ? req.command
     : req.type === 'text'
-      ? req.content.trim().toLowerCase()
+      ? req.content?.trim().toLowerCase()
       : undefined
 
   if (command === '/welcome') {

@@ -652,7 +652,9 @@
     {
       "intent": "section.58",
       "utterances": [
-        "Deploy your Application"
+        "Deploy Your Application",
+        "How you will deploy your ChatAlly application depends very much on the modules that you use, specifically the servers/channels that you use to connect to your users' clients.",
+        "In this guide, we will explain an exemplary deployment of a WhatsApp Cloud chat application."
       ],
       "answers": [
         "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/deployment/#_top"
@@ -661,6 +663,49 @@
     {
       "intent": "section.59",
       "utterances": [
+        "Create the application",
+        "Follow the Getting Started guide to create an initial application in the directory app",
+        "app",
+        "In the app directory, install additional modules",
+        "app",
+        "npm install @chatally/whatsapp-cloud",
+        "Add WhatsApp to the application (instead of the ConsoleServer)",
+        "import { Application } from '@chatally/core'   import { nlpjsMiddleware, trainNlp } from '@chatally/nlpjs'   import { WhatsAppCloud } from '@chatally/whatsapp-cloud'    const app = new Application({ log: false })   const nlp = await trainNlp(app.getLogger('nlp.js'))    app //     .use(new WhatsAppCloud({       webhooks: { path: '/whatsappcloud' }       media: { dbPath: './data/media-ids.db' },     }))     .use(nlpjsMiddleware(nlp))     .listen()",
+        "webhooks.path",
+        "media.dbPath",
+        "Provide WhatsApp configuration"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/deployment/#create-the-application"
+      ]
+    },
+    {
+      "intent": "section.60",
+      "utterances": [
+        "Create a Docker container",
+        "Create the Dockerfile",
+        "Dockerfile",
+        "# Use the official Node.js image from Docker Hub   FROM node:20    # Copy the app to the container   WORKDIR /app   COPY app ",
+        "   # Install app dependencies   RUN npm install    # Expose the port the app runs on   EXPOSE 3000    # Start the app   CMD [\"node\", \"index.js\"]",
+        "The WhatsApp Cloud server will run a webhooks endpoint at port 3000",
+        "If you reconfigure this, you will need to expose a different port here.",
+        "Build the image",
+        "docker build --tag \"chatally/whatsapp-cloud\" .",
+        "Run the container",
+        "We deploy our containers with docker swarm behind a Traefik proxy, but you are free to do however you prefer",
+        "version: \"3.9\"   networks:     bridge:       external: true     traefik_net:       external: true    services:     app:       image: chatally/whatsapp-cloud       networks:         - traefik_net         - bridge       volumes:         - ${PWD}/data:/app/data       deploy:         labels:           - traefik.enable=true           - traefik.http.routers.whatsapp_chat.middlewares=sec-headers@file           - traefik.http.routers.whatsapp_chat.rule=Host(`chat.example.org`)           - traefik.http.routers.whatsapp_chat.tls.certresolver=letsencrypt           - traefik.http.routers.whatsapp_chat.tls=true           - traefik.http.services.whatsapp_chat.loadbalancer.server.port=3000",
+        "data",
+        "/app/data",
+        "Host",
+        "docker stack deploy -c docker-compose.yml whatsapp_chat"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/guides/deployment/#create-a-docker-container"
+      ]
+    },
+    {
+      "intent": "section.61",
+      "utterances": [
         "On this page"
       ],
       "answers": [
@@ -668,7 +713,7 @@
       ]
     },
     {
-      "intent": "section.60",
+      "intent": "section.62",
       "utterances": [
         "Core",
         "A web application starts off with an HTTP server that creates a request and an empty response object and hands it over to the application framework, e.g",
@@ -686,7 +731,7 @@
       ]
     },
     {
-      "intent": "section.61",
+      "intent": "section.63",
       "utterances": [
         "Structure",
         "The core consists of the following parts:",
@@ -706,7 +751,7 @@
       ]
     },
     {
-      "intent": "section.62",
+      "intent": "section.64",
       "utterances": [
         "On this page"
       ],
@@ -715,7 +760,7 @@
       ]
     },
     {
-      "intent": "section.63",
+      "intent": "section.65",
       "utterances": [
         "Application"
       ],
@@ -724,7 +769,7 @@
       ]
     },
     {
-      "intent": "section.64",
+      "intent": "section.66",
       "utterances": [
         "On this page"
       ],
@@ -733,7 +778,7 @@
       ]
     },
     {
-      "intent": "section.65",
+      "intent": "section.67",
       "utterances": [
         "Servers"
       ],
@@ -742,7 +787,7 @@
       ]
     },
     {
-      "intent": "section.66",
+      "intent": "section.68",
       "utterances": [
         "On this page"
       ],
@@ -751,7 +796,7 @@
       ]
     },
     {
-      "intent": "section.67",
+      "intent": "section.69",
       "utterances": [
         "Middleware",
         "export type Middleware<D = unknown> =  | ((params: Context<D>) => unknown)  | ((params: Context<D>) => Promise<unknown>)"
@@ -761,7 +806,7 @@
       ]
     },
     {
-      "intent": "section.68",
+      "intent": "section.70",
       "utterances": [
         "Context",
         "The ChatAlly application gathers an execution context for each middleware module with a request and a response object, which are provided by the server that triggered the handling.",
@@ -774,7 +819,7 @@
       ]
     },
     {
-      "intent": "section.69",
+      "intent": "section.71",
       "utterances": [
         "ChatRequest"
       ],
@@ -783,7 +828,7 @@
       ]
     },
     {
-      "intent": "section.70",
+      "intent": "section.72",
       "utterances": [
         "ChatResponse"
       ],
@@ -792,7 +837,7 @@
       ]
     },
     {
-      "intent": "section.71",
+      "intent": "section.73",
       "utterances": [
         "Next"
       ],
@@ -801,7 +846,7 @@
       ]
     },
     {
-      "intent": "section.72",
+      "intent": "section.74",
       "utterances": [
         "Media"
       ],
@@ -810,7 +855,7 @@
       ]
     },
     {
-      "intent": "section.73",
+      "intent": "section.75",
       "utterances": [
         "Log",
         "The log is a context-specific logger for the middleware, that is created as a child logger of the application.",
@@ -822,7 +867,7 @@
       ]
     },
     {
-      "intent": "section.74",
+      "intent": "section.76",
       "utterances": [
         "Data"
       ],
@@ -831,7 +876,7 @@
       ]
     },
     {
-      "intent": "section.75",
+      "intent": "section.77",
       "utterances": [
         "On this page"
       ],
@@ -840,7 +885,7 @@
       ]
     },
     {
-      "intent": "section.76",
+      "intent": "section.78",
       "utterances": [
         "Context"
       ],
@@ -849,7 +894,7 @@
       ]
     },
     {
-      "intent": "section.77",
+      "intent": "section.79",
       "utterances": [
         "On this page"
       ],
@@ -858,7 +903,7 @@
       ]
     },
     {
-      "intent": "section.78",
+      "intent": "section.80",
       "utterances": [
         "Messages"
       ],
@@ -867,7 +912,7 @@
       ]
     },
     {
-      "intent": "section.79",
+      "intent": "section.81",
       "utterances": [
         "On this page"
       ],
@@ -876,7 +921,7 @@
       ]
     },
     {
-      "intent": "section.80",
+      "intent": "section.82",
       "utterances": [
         "Logger Facade",
         "The logger facade is published as separate package @chatally/logger on npmjs.com",
@@ -889,7 +934,7 @@
       ]
     },
     {
-      "intent": "section.81",
+      "intent": "section.83",
       "utterances": [
         "Logger",
         "Logger",
@@ -901,7 +946,7 @@
       ]
     },
     {
-      "intent": "section.82",
+      "intent": "section.84",
       "utterances": [
         "Logger.level: Level",
         "Logger.level: Level",
@@ -912,7 +957,7 @@
       ]
     },
     {
-      "intent": "section.83",
+      "intent": "section.85",
       "utterances": [
         "Logger.name?: string",
         "Logger.name?: string",
@@ -923,7 +968,7 @@
       ]
     },
     {
-      "intent": "section.84",
+      "intent": "section.86",
       "utterances": [
         "Logger.data?: unknown",
         "Logger.data?: unknown",
@@ -934,7 +979,7 @@
       ]
     },
     {
-      "intent": "section.85",
+      "intent": "section.87",
       "utterances": [
         "Logger.isLevel(level: Level): boolean",
         "Logger.isLevel(level: Level): boolean",
@@ -945,7 +990,7 @@
       ]
     },
     {
-      "intent": "section.86",
+      "intent": "section.88",
       "utterances": [
         "Logger.child(options?: LoggerOptions): Logger",
         "Logger.child(options?: LoggerOptions): Logger",
@@ -960,7 +1005,7 @@
       ]
     },
     {
-      "intent": "section.87",
+      "intent": "section.89",
       "utterances": [
         "Log methods",
         "The logger has log methods according to it's log levels: debug(...), info(...), warn(...), error(...)",
@@ -978,7 +1023,7 @@
       ]
     },
     {
-      "intent": "section.88",
+      "intent": "section.90",
       "utterances": [
         "Default implementations",
         "The package comes with two default implementations."
@@ -988,7 +1033,7 @@
       ]
     },
     {
-      "intent": "section.89",
+      "intent": "section.91",
       "utterances": [
         "BaseLogger",
         "Basic logger implementation, that logs to the console by default.",
@@ -1005,7 +1050,7 @@
       ]
     },
     {
-      "intent": "section.90",
+      "intent": "section.92",
       "utterances": [
         "NoLogger",
         "Default implementation of Logger interface with all no-ops."
@@ -1015,7 +1060,29 @@
       ]
     },
     {
-      "intent": "section.91",
+      "intent": "section.93",
+      "utterances": [
+        "On this page"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/utils/#starlight__on-this-page"
+      ]
+    },
+    {
+      "intent": "section.94",
+      "utterances": [
+        "Utilities",
+        "The ChatAlly utilities are published as separate package @chatally/utils on npmjs.com",
+        "Find the sources on Github.",
+        "Install the utilities by",
+        "npm install @chatally/utils"
+      ],
+      "answers": [
+        "I am not sure, but you might find this part of the website interesting:\n\nhttps://chatally.org/reference/core/utils/#_top"
+      ]
+    },
+    {
+      "intent": "section.95",
       "utterances": [
         "On this page"
       ],
@@ -1024,7 +1091,7 @@
       ]
     },
     {
-      "intent": "section.92",
+      "intent": "section.96",
       "utterances": [
         "Middleware"
       ],
@@ -1033,7 +1100,7 @@
       ]
     },
     {
-      "intent": "section.93",
+      "intent": "section.97",
       "utterances": [
         "On this page"
       ],
@@ -1042,7 +1109,7 @@
       ]
     },
     {
-      "intent": "section.94",
+      "intent": "section.98",
       "utterances": [
         "Consent Manager",
         "The Consent Manager makes it easy, to require from each new user of the chatbot, to consent to automatic processing of their data before proceeding",
@@ -1054,7 +1121,7 @@
       ]
     },
     {
-      "intent": "section.95",
+      "intent": "section.99",
       "utterances": [
         "Usage",
         "Install the required packages",
@@ -1069,7 +1136,7 @@
       ]
     },
     {
-      "intent": "section.96",
+      "intent": "section.100",
       "utterances": [
         "Configuration",
         "The Consent Manager has meaningful defaults and will ask new users for consent in a fairly generic manner (in English)",
@@ -1083,7 +1150,7 @@
       ]
     },
     {
-      "intent": "section.97",
+      "intent": "section.101",
       "utterances": [
         "On this page"
       ],
@@ -1092,7 +1159,7 @@
       ]
     },
     {
-      "intent": "section.98",
+      "intent": "section.102",
       "utterances": [
         "History",
         "Coming soonish, see the backlog."
@@ -1102,7 +1169,7 @@
       ]
     },
     {
-      "intent": "section.99",
+      "intent": "section.103",
       "utterances": [
         "On this page"
       ],
@@ -1111,7 +1178,7 @@
       ]
     },
     {
-      "intent": "section.100",
+      "intent": "section.104",
       "utterances": [
         "nlp.js",
         "ChatAlly nlp.js Middleware is a middleware wrapper around a trained nlp.js NLP module and provides a utility function to train an NLP module.",
@@ -1122,7 +1189,7 @@
       ]
     },
     {
-      "intent": "section.101",
+      "intent": "section.105",
       "utterances": [
         "On this page"
       ],
@@ -1131,7 +1198,7 @@
       ]
     },
     {
-      "intent": "section.102",
+      "intent": "section.106",
       "utterances": [
         "TensorFlow",
         "TensorFlow.js",
@@ -1142,7 +1209,7 @@
       ]
     },
     {
-      "intent": "section.103",
+      "intent": "section.107",
       "utterances": [
         "On this page"
       ],
@@ -1151,7 +1218,7 @@
       ]
     },
     {
-      "intent": "section.104",
+      "intent": "section.108",
       "utterances": [
         "Servers"
       ],
@@ -1160,7 +1227,7 @@
       ]
     },
     {
-      "intent": "section.105",
+      "intent": "section.109",
       "utterances": [
         "On this page"
       ],
@@ -1169,7 +1236,7 @@
       ]
     },
     {
-      "intent": "section.106",
+      "intent": "section.110",
       "utterances": [
         "Console",
         "ChatAlly Console Server that reads input from the console, dispatches it to a chat application and outputs responses on the console.",
@@ -1189,7 +1256,7 @@
       ]
     },
     {
-      "intent": "section.107",
+      "intent": "section.111",
       "utterances": [
         "Usage",
         "Install the package",
@@ -1202,7 +1269,7 @@
       ]
     },
     {
-      "intent": "section.108",
+      "intent": "section.112",
       "utterances": [
         "On this page"
       ],
@@ -1211,7 +1278,7 @@
       ]
     },
     {
-      "intent": "section.109",
+      "intent": "section.113",
       "utterances": [
         "Signal",
         "Coming soonish, see the backlog."
@@ -1221,7 +1288,7 @@
       ]
     },
     {
-      "intent": "section.110",
+      "intent": "section.114",
       "utterances": [
         "On this page"
       ],
@@ -1230,7 +1297,7 @@
       ]
     },
     {
-      "intent": "section.111",
+      "intent": "section.115",
       "utterances": [
         "Websocket",
         "Coming soonish, see the backlog."
@@ -1240,7 +1307,7 @@
       ]
     },
     {
-      "intent": "section.112",
+      "intent": "section.116",
       "utterances": [
         "On this page"
       ],
@@ -1249,7 +1316,7 @@
       ]
     },
     {
-      "intent": "section.113",
+      "intent": "section.117",
       "utterances": [
         "WhatsApp Cloud",
         "WhatsApp Cloud is a ChatAlly server that integrates the WhatsApp Cloud API endpoints Webhooks, Messages and Media into one server module, that can be used in a ChatAlly application.",
@@ -1266,7 +1333,7 @@
       ]
     },
     {
-      "intent": "section.114",
+      "intent": "section.118",
       "utterances": [
         "Usage",
         "Install the required packages",
@@ -1284,7 +1351,7 @@
       ]
     },
     {
-      "intent": "section.115",
+      "intent": "section.119",
       "utterances": [
         "Configuration",
         "To set up a WhatsApp Cloud server, you must provide some configuration, either explicitly as a Javascript object, a configuration file, environment variables or a combination of it",
@@ -1305,7 +1372,7 @@
       ]
     },
     {
-      "intent": "section.116",
+      "intent": "section.120",
       "utterances": [
         "Reference",
         "In your application, you can use some functionality of the integrated endpoints through the server's interface."
@@ -1315,7 +1382,7 @@
       ]
     },
     {
-      "intent": "section.117",
+      "intent": "section.121",
       "utterances": [
         "async send(to: string, ...outgoing: ChatMessage[]): Promise<void>",
         "async send(to: string, ...outgoing: ChatMessage[]): Promise<void>",
@@ -1336,7 +1403,7 @@
       ]
     },
     {
-      "intent": "section.118",
+      "intent": "section.122",
       "utterances": [
         "async upload(file: string): Promise<string>",
         "async upload(file: string): Promise<string>",
@@ -1349,7 +1416,7 @@
       ]
     },
     {
-      "intent": "section.119",
+      "intent": "section.123",
       "utterances": [
         "async download(id): Promise<string>",
         "async download(id): Promise<string>",
@@ -1362,7 +1429,7 @@
       ]
     },
     {
-      "intent": "section.120",
+      "intent": "section.124",
       "utterances": [
         "Running standalone",
         "If you do not use the WhatsApp Cloud server in a ChatAlly application, you have to register a dispatch method explicitly and call listen() to start the server.",
@@ -1374,7 +1441,7 @@
       ]
     },
     {
-      "intent": "section.121",
+      "intent": "section.125",
       "utterances": [
         "set dispatch(dispatch: Dispatch)",
         "set dispatch(dispatch: Dispatch)",
@@ -1389,7 +1456,7 @@
       ]
     },
     {
-      "intent": "section.122",
+      "intent": "section.126",
       "utterances": [
         "listen(port?: number): void",
         "listen(port?: number): void",
@@ -1405,7 +1472,7 @@
       ]
     },
     {
-      "intent": "section.123",
+      "intent": "section.127",
       "utterances": [
         "See also the WhatsApp Business Documentation"
       ],
@@ -1414,7 +1481,7 @@
       ]
     },
     {
-      "intent": "section.124",
+      "intent": "section.128",
       "utterances": [
         "Cloud API"
       ],
@@ -1423,7 +1490,7 @@
       ]
     },
     {
-      "intent": "section.125",
+      "intent": "section.129",
       "utterances": [
         "Webhooks"
       ],
@@ -1432,7 +1499,7 @@
       ]
     },
     {
-      "intent": "section.126",
+      "intent": "section.130",
       "utterances": [
         "Messages"
       ],
@@ -1441,7 +1508,7 @@
       ]
     },
     {
-      "intent": "section.127",
+      "intent": "section.131",
       "utterances": [
         "Media"
       ],
@@ -1450,7 +1517,7 @@
       ]
     },
     {
-      "intent": "section.128",
+      "intent": "section.132",
       "utterances": [
         "On this page"
       ],
@@ -1459,7 +1526,7 @@
       ]
     },
     {
-      "intent": "section.129",
+      "intent": "section.133",
       "utterances": [
         "WhatsApp Web",
         "Coming soonish, see the backlog."
@@ -1469,7 +1536,7 @@
       ]
     },
     {
-      "intent": "section.130",
+      "intent": "section.134",
       "utterances": [
         "On this page"
       ],
@@ -1478,7 +1545,7 @@
       ]
     },
     {
-      "intent": "section.131",
+      "intent": "section.135",
       "utterances": [
         "Examples",
         "For most people, also for us, it is easiest to understand concepts from examples",
@@ -1490,7 +1557,7 @@
       ]
     },
     {
-      "intent": "section.132",
+      "intent": "section.136",
       "utterances": [
         "On this page"
       ],
@@ -1499,7 +1566,7 @@
       ]
     },
     {
-      "intent": "section.133",
+      "intent": "section.137",
       "utterances": [
         "Console Chat"
       ],
@@ -1508,7 +1575,7 @@
       ]
     },
     {
-      "intent": "section.134",
+      "intent": "section.138",
       "utterances": [
         "On this page"
       ],
@@ -1517,7 +1584,7 @@
       ]
     },
     {
-      "intent": "section.135",
+      "intent": "section.139",
       "utterances": [
         "nlp.js Web Chat"
       ],
@@ -1526,7 +1593,7 @@
       ]
     },
     {
-      "intent": "section.136",
+      "intent": "section.140",
       "utterances": [
         "About"
       ],
@@ -1535,7 +1602,7 @@
       ]
     },
     {
-      "intent": "section.137",
+      "intent": "section.141",
       "utterances": [
         "Who is behind ChatAlly?",
         "For now it is only me, Christian, co-founder of the non-profit organization dooiy, that provides step-by-step instructions for good hacks, that make life easier",
@@ -1559,7 +1626,7 @@
       ]
     },
     {
-      "intent": "section.138",
+      "intent": "section.142",
       "utterances": [
         "Impressum",
         "ChatAlly is hosted in Germany, so this is a legal notice according to German law."
@@ -1569,7 +1636,7 @@
       ]
     },
     {
-      "intent": "section.139",
+      "intent": "section.143",
       "utterances": [
         "Angaben gemäß §5 TMG",
         "Dieses Impressum gilt für die Website chatally.org",

@@ -9,7 +9,7 @@ let messages
 if (!process.env.WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN) {
   // only for local debugging
   graphApi = new GraphApiMock({ phoneNumberId: '1234', accessToken: 'ABCD' })
-  messages = { sequential: false }
+  messages = { sequential: 2 }
 } else {
   messages = { sequential: 15 }
 }

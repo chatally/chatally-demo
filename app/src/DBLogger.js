@@ -25,8 +25,8 @@ export class DBLogger extends BaseLogger {
     db.exec(`
     CREATE TABLE IF NOT EXISTS messages (
       'rowid' integer PRIMARY KEY AUTOINCREMENT,
-      'id' varchar UNIQUE,
-      'direction' varchar UNIQUE,
+      'id' varchar,
+      'direction' varchar,
       'message' varchar,
       'timestamp' INTEGER
     );
