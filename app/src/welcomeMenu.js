@@ -105,7 +105,11 @@ function whatsappMessage(text, number) {
  * @type {import('@chatally/core').Middleware}
  */
 export const welcomeMenu = async ({ req, res }) => {
-  const command = req.type === 'action' ? req.command : req.type === 'text' ? req.content : undefined
+  const command = req.type === 'action'
+    ? req.command
+    : req.type === 'text'
+      ? req.content.trim().toLowerCase()
+      : undefined
 
   if (command === '/welcome') {
     res.write(welcome)

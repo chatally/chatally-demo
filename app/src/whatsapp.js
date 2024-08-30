@@ -1,4 +1,5 @@
 import { GraphApi, GraphApiMock, WhatsAppCloud } from '@chatally/whatsapp-cloud'
+import { DBLogger } from './DBLogger.js'
 
 /** @type {undefined | GraphApi} */
 let graphApi
@@ -9,6 +10,8 @@ if (!process.env.WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN) {
   // only for local debugging
   graphApi = new GraphApiMock({ phoneNumberId: '1234', accessToken: 'ABCD' })
   messages = { sequential: false }
+} else {
+  messages = { sequential: 15 }
 }
 
 /**
@@ -37,6 +40,11 @@ if (!process.env.WHATSAPP_CLOUD_GRAPHAPI_ACCESS_TOKEN) {
  * in case you are running multiple ChatAlly servers on the same domain).
  */
 export const whatsapp = new WhatsAppCloud({
+  log: new DBLogger({
+    level: 'debug',
+    name: 'WhatsApp',
+    path: 'data/messages.db',
+  }),
   webhooks: { path: '/whatsappcloud' },
   media: { dbPath: 'data/wa-media-ids.db' },
   graphApi,
